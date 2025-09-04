@@ -1,0 +1,79 @@
+/*
+===================================================================
+DDL Script : Create Bronze Tables
+===================================================================
+Script porpose:
+  Tris scrip create the tabes in the bronze schema, dropping existing tables if they already exist
+  Run this script to re-define the DDL structure of Bronze tables
+===================================================================
+*/
+
+IF OBJECT_ID('bronze.erp_px_cat_info', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_px_cat_info
+GO
+CREATE TABLE bronze.erp_px_cat_info (
+	ID VARCHAR(50),
+	CAT VARCHAR(50),
+	SUBCAT VARCHAR (50),
+	MAINTENANCE VARCHAR(3)
+);
+GO
+IF OBJECT_ID('bronze.erp_loc_info', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_loc_info
+GO
+
+CREATE TABLE bronze.erp_loc_info (
+	CID NVARCHAR(50),
+	CNTRY VARCHAR (50)
+);
+GO
+IF OBJECT_ID('bronze.erp_cust_info', 'U') IS NOT NULL
+	DROP TABLE bronze.erp_cust_info
+GO
+CREATE TABLE bronze.erp_cust_info (
+	CID NVARCHAR (50),
+	BDATE DATE,
+	GEN NVarchar (6)
+);
+GO
+IF OBJECT_ID('bronze.crm_sales_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_sales_info
+GO
+
+CREATE TABLE bronze.crm_sales_info (
+	sls_ord_num NVARCHAR (20),
+	sls_prd_key NVARCHAR(50),
+	sls_cust_id INT,
+	sls_order_dt VARCHAR (15),
+	sls_ship_dt VARCHAR (15),
+	sls_due_dt VARCHAR (15),
+	sls_sales INT,
+	sls_quantity INT,
+	sls_price INT
+);
+GO
+IF OBJECT_ID('bronze.crm_prd_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_prd_info
+GO
+CREATE TABLE bronze.crm_prd_info (
+	prd_id INT,
+	prd_key Nvarchar(50),
+	prd_name NVARCHAR(70),
+	prd_cost INT,
+	prd_line VARCHAR (10),
+	prd_start_dt DATE,
+	prd_end_dt DATE
+);
+GO
+IF OBJECT_ID('bronze.crm_prd_info', 'U') IS NOT NULL
+	DROP TABLE bronze.crm_prd_info
+GO
+CREATE TABLE bronze.crm_prd_info (
+	cst_id INT,
+	cst_key Nvarchar(50),
+	cst_firstname NVARCHAR(50),
+	cst_lastname NVARCHAR(50),
+	cst_material_status NVARCHAR(50),
+	cst_gndr NVARCHAR(50),
+	cst_create_date DATE
+);
